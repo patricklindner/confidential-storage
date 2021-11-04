@@ -8,7 +8,7 @@ WORKDIR /home/node
 COPY --chown=node:node ./tsconfig.json ./tsconfig.json
 COPY --chown=node:node ./package.json ./package.json
 COPY --chown=node:node ./src ./src
-COPY --chown=node:node ./run.js ./run.js
+COPY --chown=node:node run.ts ./run.ts
 
 # Install project
 RUN ["npm", "install"]
@@ -17,4 +17,4 @@ RUN ["npm", "run", "build"]
 # Run the server
 EXPOSE 8080
 
-CMD [ "node", "./run.js" ]
+CMD [ "node", "./run.ts" ]

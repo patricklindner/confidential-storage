@@ -1,42 +1,42 @@
-import { OperationRequest, OperationResponse } from '../../types';
+import {OperationRequest, OperationResponse} from '../../types';
 
 export const getEdv = async (
-  request: OperationRequest
+    request: OperationRequest
 ): Promise<OperationResponse> => {
-  const { server, headers, method, path, params } = request;
+    const {server, params} = request;
 
-  if (!headers['capability-invocation']) {
-    console.warn('no authorization required to get a vault config?');
-  } else {
-    const verified = await server.verifyCapabilityInvocation(
-      server,
-      method as string,
-      path as string,
-      headers
-    );
+    // if (!headers['capability-invocation']) {
+    //     console.warn('no authorization required to get a vault config?');
+    // } else {
+    //     const verified = await server.verifyCapabilityInvocation(
+    //         server,
+    //         method as string,
+    //         path as string,
+    //         headers
+    //     );
+    //
+    //     if (!verified) {
+    //         return {
+    //             status: 403,
+    //             headers: {},
+    //             body: {message: 'capability invocation verification failed'},
+    //         };
+    //     }
+    // }
 
-    if (!verified) {
-      return {
-        status: 403,
-        headers: {},
-        body: { message: 'capability invocation verification failed' },
-      };
+    const {edvId} = params;
+    const config = await server.store.getVaultById(edvId);
+    if (!config) {
+        return {
+            status: 404,
+            headers: {},
+            body: {},
+        };
     }
-  }
 
-  const { edvId } = params;
-  const config = await server.store.getVaultById(edvId);
-  if (!config) {
     return {
-      status: 404,
-      headers: {},
-      body: {},
+        status: 200,
+        headers: {},
+        body: config,
     };
-  }
-
-  return {
-    status: 200,
-    headers: {},
-    body: config,
-  };
 };

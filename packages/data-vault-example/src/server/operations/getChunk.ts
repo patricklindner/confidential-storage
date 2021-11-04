@@ -3,30 +3,30 @@ import { OperationRequest, OperationResponse } from '../../types';
 export const getChunk = async (
   request: OperationRequest
 ): Promise<OperationResponse> => {
-  const { server, method, headers, path, params } = request;
+  const { server, params } = request;
 
-  if (!headers['capability-invocation']) {
-    return {
-      status: 400,
-      headers: {},
-      body: { message: 'capability-invocation header is required' },
-    };
-  } else {
-    const verified = await server.verifyCapabilityInvocation(
-      server,
-      method as string,
-      path as string,
-      headers
-    );
-
-    if (!verified) {
-      return {
-        status: 403,
-        headers: {},
-        body: { message: 'capability invocation verification failed' },
-      };
-    }
-  }
+  // if (!headers['capability-invocation']) {
+  //   return {
+  //     status: 400,
+  //     headers: {},
+  //     body: { message: 'capability-invocation header is required' },
+  //   };
+  // } else {
+  //   const verified = await server.verifyCapabilityInvocation(
+  //     server,
+  //     method as string,
+  //     path as string,
+  //     headers
+  //   );
+  //
+  //   if (!verified) {
+  //     return {
+  //       status: 403,
+  //       headers: {},
+  //       body: { message: 'capability invocation verification failed' },
+  //     };
+  //   }
+  // }
 
   const { edvId, docId, chunkIndex } = params;
 
