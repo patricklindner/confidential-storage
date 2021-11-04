@@ -26,13 +26,13 @@
     "prestart": "npm run build",
     "start": "node ./run.js",
     "docker:start:test": "docker-compose -f ./docker-compose.test.yml up",
+    "docker:stop:test": "docker-compose -f ./docker-compose.test.yml down",
     "docker:start:dev": "docker-compose -f ./docker-compose.dev.yml up",
     "docker:start:dev:build": "docker-compose -f ./docker-compose.dev.yml up --build",
     "docker:start:prod": "docker-compose -f ./docker-compose.prod.yml up",
     "docker:build": "docker build -t or13/edv .",
     "docker:publish": "docker push or13/edv:latest"
   },
-  "peerDependencies": {},
   "prettier": {
     "printWidth": 80,
     "semi": true,
@@ -47,6 +47,7 @@
   "dependencies": {
     "@transmute/did-key-ed25519": "^0.2.1-unstable.29",
     "ajv": "^7.0.2",
+    "dotenv": "^10.0.0",
     "edv-client": "^7.0.0",
     "fastify": "^3.9.2",
     "fastify-plugin": "^3.0.0",

@@ -11,8 +11,8 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "identity.foundation",
-  "basePath": "/confidential-storage/api/v0",
+  "host": "localhost:8080",
+  "basePath": "/",
   "tags": [
     {
       "name": "Vaults",

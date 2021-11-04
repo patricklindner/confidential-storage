@@ -13,7 +13,7 @@ vorpal
   });
 
 if (process.argv.length <= 2) {
-  vorpal.delimiter('💾 $').show();
+  vorpal.delimiter('edv> ').show();
 }
 // eslint-disable-next-line no-undef
 vorpal.parse(process.argv);
